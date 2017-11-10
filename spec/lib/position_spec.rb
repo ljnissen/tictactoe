@@ -15,4 +15,37 @@ describe Position do
 		its(:board) { should == %w(x - - - - - - - -)}
 		its (:turn) { should == "o"}
 	end
+
+	context "#possible_moves" do
+		subject { Position.new.move(0).move(1) }
+		its(:possible_moves) {should == [2,3,4,5,6,7,8] }
+	end
+
+	context "#win?" do
+		it { expect(Position.new.win?("x")).to be_falsey }
+		it { expect(Position.new(%w(x x x
+									- - -
+									- - -)).win?("x")).to be_truthy }
+		it { expect(Position.new(%w(- - -
+									x x x
+									- - -)).win?("x")).to be_truthy }
+		it { expect(Position.new(%w(- - -
+									- - -
+									x x x)).win?("x")).to be_truthy }
+		it { expect(Position.new(%w(o - -
+									o - -
+									o - -)).win?("o")).to be_truthy }
+		it { expect(Position.new(%w(- o -
+									- o -
+									- o -)).win?("o")).to be_truthy }
+		it { expect(Position.new(%w(- - o
+									- - o
+									- - o)).win?("o")).to be_truthy }
+		it { expect(Position.new(%w(- - o
+									- o -
+									o - -)).win?("o")).to be_truthy }
+		it { expect(Position.new(%w(o - -
+									- o -
+									- - o)).win?("o")).to be_truthy }
+	end
 end
