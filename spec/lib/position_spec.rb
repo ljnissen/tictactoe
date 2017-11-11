@@ -48,4 +48,8 @@ describe Position do
 									- o -
 									- - o)).win?("o")).to be_truthy }
 	end
+
+	context "#minimax" do
+		it { expect(Position.new(%w(x x x - - - - - -), "x").minimax).to eq(100) }
+	end
 end

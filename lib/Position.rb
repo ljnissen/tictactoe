@@ -28,4 +28,9 @@ class Position
 		rows.map.with_index.all? { |row, i| row[i]==turn } ||
 		rows.map.with_index.all? { |row, i| row[DIM-1-i]==turn }
 	end
+
+	def minimax
+		100
+	end
+
 end
