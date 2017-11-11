@@ -30,7 +30,9 @@ class Position
 	end
 
 	def minimax
-		100
+		return 100 if win?("x")
+		return -100 if win?("o")
+		return 0 if possible_moves.empty?
 	end
 
 end
