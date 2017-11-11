@@ -1,5 +1,6 @@
 require "position"
 require 'rspec/its'
+require 'timeout'
 
 describe Position do
 	its(:board) {should == %w(-)*9}
@@ -55,5 +56,6 @@ describe Position do
 		it { expect(Position.new(%w(x o x x o x o x o), "o").minimax).to eq(0) }
 		it { expect(Position.new(%w(x x - - - - - - -), "x").minimax).to eq(99) }
 		it { expect(Position.new(%w(o o - - - - - - -), "o").minimax).to eq(-99) }
+		it { expect { Timeout::timeout(2) { Position.new.minimax }}.to raise_error }
 	end
 end

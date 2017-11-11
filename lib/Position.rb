@@ -33,7 +33,10 @@ class Position
 		return 100 if win?("x")
 		return -100 if win?("o")
 		return 0 if possible_moves.empty?
-		possible_moves.map { |idx| move(idx).minimax(depth+1) }.send(xturn(:max, :min)) + xturn(-depth, depth)
+		@@minimax ||= {}
+		value = @@minimax[@board]
+		return value if value
+		@@minimax[@board] = possible_moves.map { |idx| move(idx).minimax(depth+1) }.send(xturn(:max, :min)) + xturn(-depth, depth)
 	end
 
 end
