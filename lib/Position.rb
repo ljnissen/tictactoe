@@ -29,10 +29,11 @@ class Position
 		rows.map.with_index.all? { |row, i| row[DIM-1-i]==turn }
 	end
 
-	def minimax
+	def minimax(depth=1)
 		return 100 if win?("x")
 		return -100 if win?("o")
 		return 0 if possible_moves.empty?
+		possible_moves.map { |idx| move(idx).minimax(depth+1) }.send(xturn(:max, :min)) + xturn(-depth, depth)
 	end
 
 end

@@ -53,5 +53,7 @@ describe Position do
 		it { expect(Position.new(%w(x x x - - - - - -), "x").minimax).to eq(100) }
 		it { expect(Position.new(%w(o o o - - - - - -), "o").minimax).to eq(-100) }
 		it { expect(Position.new(%w(x o x x o x o x o), "o").minimax).to eq(0) }
+		it { expect(Position.new(%w(x x - - - - - - -), "x").minimax).to eq(99) }
+		it { expect(Position.new(%w(o o - - - - - - -), "o").minimax).to eq(-99) }
 	end
 end
