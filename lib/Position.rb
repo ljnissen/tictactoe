@@ -36,7 +36,13 @@ class Position
 		@@minimax ||= {}
 		value = @@minimax[@board]
 		return value if value
-		@@minimax[@board] = possible_moves.map { |idx| move(idx).minimax(depth+1) }.send(xturn(:max, :min)) + xturn(-depth, depth)
+		@@minimax[@board] = possible_moves.map { |idx| 
+		move(idx).minimax(depth+1) 
+		}.send(xturn(:max, :min)) + xturn(-depth, depth)
+	end
+
+	def best_move
+		possible_moves.send(xturn(:max_by, :min_by)) { |idx| move(idx).minimax }
 	end
 
 end
