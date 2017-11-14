@@ -19,8 +19,8 @@ class Game < Gosu::Window
 
 	def draw
 		[cell_width, cell_width*2].each do |w|
-			draw_line(w, 0, Gosu::Color::WHITE,
-						w, width, Gosu::Color::WHITE)
+			draw_line(w, 0, Gosu::Color::WHITE, w, width, Gosu::Color::WHITE)
+			draw_line(0, w, Gosu::Color::WHITE, width, w, Gosu::Color::WHITE)
 		end
 	end
 end
