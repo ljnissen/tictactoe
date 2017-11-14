@@ -11,6 +11,9 @@ class Game < Gosu::Window
 			when Gosu::KbQ then close
 		end
 	end
+	def needs_cursor?
+		true
+	end
 end
 
 game = Game.new
