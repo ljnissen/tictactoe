@@ -16,6 +16,10 @@ class Game < Gosu::Window
 		case id
 			when Gosu::KbQ then close
 			when Gosu::MsLeft then @position = @position.move((mouse_x/cell_width).to_i + 3*(mouse_y/cell_width).to_i)
+			if ! @position.possible_moves.empty? then
+				idx = @position.best_move
+				@position = @position.move(idx)
+			end
 		end
 	end
 	
