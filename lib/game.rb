@@ -33,7 +33,7 @@ class Game < Gosu::Window
 		# draw position
 		position.board.each.with_index do |p, i|
 			if p != "-"
-				x = (i%3)*cell_width
+				x = (i%3)*cell_width+@font.text_width(p)/2
 				y = (i/3)*cell_width
 				@font.draw(p, x, y, 0)
 			end
