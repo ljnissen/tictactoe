@@ -11,6 +11,7 @@ class Game < Gosu::Window
 		
 		super(width, width, false)
 		@font = Gosu::Font.new(self, Gosu::default_font_name, cell_width)
+		@mfont = Gosu::Font.new(self, Gosu::default_font_name, cell_width/2)
 	end
 	def button_down(id)
 		case id
@@ -42,6 +43,20 @@ class Game < Gosu::Window
 				@font.draw(p, x, y, 0)
 			end
 		end
+
+		# display message
+		display_message("You won") if @position.win?("x")
+		display_message("Computer won") if @position.win?("o")
+		display_message("Draw") if @position.possible_moves.empty?
+	end
+
+	def display_message(txt)
+		black = Gosu::Color::BLACK
+		draw_quad(0, 100, black, 
+				  width, 100, black,
+				  width, 500, black,
+				  0, 500, black)
+		@mfont.draw(txt, (width-@mfont.text_width(txt))/2, width/2-100, 0)
 	end
 end
 
